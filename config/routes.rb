@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :categories, only: [ :index, :show]
       resources :transactions
     end
   end
