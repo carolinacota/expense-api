@@ -1,6 +1,11 @@
-json.extract! @transaction, :id, :date, :currency, :value, :description, :category_id, :user_id
+json.extract! @transaction, :id, :paid_on, :currency, :value, :description, :user_id
+json.category do
+  json.name @transaction.category.name
+  json.color @transaction.category.color
+end
 
-# json.extract! @transaction, :id, :date, :currency, :value, :description, :category_id, :user_id
-# json.comments @restaurant.comments do |comment|
-#   json.extract! comment, :id, :content
+
+# json.extract! @category, :id, :name, :color
+# json.transactions @category.transaction do |transaction|
+#   json.extract! transaction, :id, :paid_on, :currency, :value, :description, :category_id, :user_id
 # end
