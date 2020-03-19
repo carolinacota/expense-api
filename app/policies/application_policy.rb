@@ -10,13 +10,13 @@ class ApplicationPolicy
   #   false
   # end
 
-  # def show?
-  #   false
-  # end
+  def show?
+    true
+  end
 
-  # def create?
-  #   false
-  # end
+  def create?
+    true
+  end
 
   # def new?
   #   create?
