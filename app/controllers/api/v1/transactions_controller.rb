@@ -1,18 +1,16 @@
 class Api::V1::TransactionsController < Api::V1::BaseController
-  before_action :set_transaction, only: [ :show, :update ]
+  acts_as_token_authentication_handler_for User, except: [ :index, :show ]
+  before_action :set_transaction, only: [ :show, :update, :destroy ]
 
   def index
     @transactions = policy_scope(Transaction)
   end
 
-  def show
-  end
-
   def create
     @transaction = Transaction.new(transaction_params)
     @transaction.user = current_user
-    @transaction.category = category
     authorize @transaction
+    # @transaction.category = category
     if @transaction.save
       render :show, status: :created
     else
@@ -20,7 +18,20 @@ class Api::V1::TransactionsController < Api::V1::BaseController
     end
   end
 
+  def show
+  end
+
   def update
+    if @transaction.update(transaction_params)
+      render :show, status: :updated
+    else
+      render_error
+    end
+  end
+
+  def destroy
+    @transaction.destroy
+    head :no_content
   end
 
   private
@@ -31,7 +42,12 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   end
 
   def transaction_params
-    params.require(:transaction).permit(:paid_on, :currency, :value, :description)
+    params.require(:transaction).permit(:paid_on, :currency, :value, :description, :category_id)
+  end
+
+  def render_error
+    render json: { errors: @transactions.errors.full_messages },
+      status: :unprocessable_entity #422
   end
 
 end
