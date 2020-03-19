@@ -6,34 +6,6 @@ class ApplicationPolicy
     @record = record
   end
 
-  # def index?
-  #   false
-  # end
-
-  def show?
-    true
-  end
-
-  def create?
-    true
-  end
-
-  # def new?
-  #   create?
-  # end
-
-  # def update?
-  #   false
-  # end
-
-  # def edit?
-  #   update?
-  # end
-
-  # def destroy?
-  #   false
-  # end
-
   class Scope
     attr_reader :user, :scope
 
