@@ -14,7 +14,7 @@ class TransactionPolicy < ApplicationPolicy
   end
 
   def create?
-    !user.ni
+    !user.nil?
   end
 
   # def new?

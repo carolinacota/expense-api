@@ -1,6 +1,7 @@
 class Api::V1::TransactionsController < Api::V1::BaseController
   acts_as_token_authentication_handler_for User, except: [ :index, :show ]
   before_action :set_transaction, only: [ :show, :update, :destroy ]
+  # before_action :authenticate_user!
 
   def index
     @transactions = policy_scope(Transaction)
