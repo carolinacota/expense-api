@@ -28,3 +28,15 @@ t3 = Transaction.create(value: 1100, currency: "euro", paid_on: "16/03/2020",
                         description: "rent + bills", category: home,
                         user: carol)
 
+t4 = Transaction.create(value: 1100, currency: "euro", paid_on: "15/02/2020",
+                        description: "club", category: entertainment,
+                        user: carol)
+
+t5 = Transaction.create(value: 1100, currency: "euro", paid_on: "20/02/2020",
+                        description: "jeans", category: clothing,
+                        user: carol)
+
+t6 = Transaction.create(value: 1100, currency: "euro", paid_on: "29/02/2020",
+                        description: "burger", category: foodAndDrink,
+                        user: carol)
+
