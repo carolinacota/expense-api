@@ -5,6 +5,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
 
   def index
     @transactions = policy_scope(Transaction)
+
   end
 
   def create
@@ -20,6 +21,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   end
 
   def show
+    #
   end
 
   def update

@@ -14,6 +14,8 @@ transportation = Category.create(name: "transportation", color: "orange")
 
 puts "Creating Users"
 carol = User.create(email: "carolinareycota@gmail.com", password: "12345678")
+carol2 = User.create(email: "carolinarcota@gmail.com", password: "12345678")
+
 
 puts "Creating Transactions"
 t1 = Transaction.create(value: 33, currency: "euro", paid_on: "01/03/2020",
@@ -22,21 +24,20 @@ t1 = Transaction.create(value: 33, currency: "euro", paid_on: "01/03/2020",
 
 t2 = Transaction.create(value: 59, currency: "euro", paid_on: "18/03/2020",
                         description: "mercadona", category: supermarket,
-                        user: carol)
+                        user: carol2)
 
 t3 = Transaction.create(value: 1100, currency: "euro", paid_on: "16/03/2020",
                         description: "rent + bills", category: home,
                         user: carol)
 
-t4 = Transaction.create(value: 1100, currency: "euro", paid_on: "15/02/2020",
+t4 = Transaction.create(value: 80, currency: "euro", paid_on: "15/02/2020",
                         description: "club", category: entertainment,
                         user: carol)
 
-t5 = Transaction.create(value: 1100, currency: "euro", paid_on: "20/02/2020",
-                        description: "jeans", category: clothing,
-                        user: carol)
-
-t6 = Transaction.create(value: 1100, currency: "euro", paid_on: "29/02/2020",
+t6 = Transaction.create(value: 25, currency: "euro", paid_on: "28/02/2020",
                         description: "burger", category: foodAndDrink,
-                        user: carol)
+                        user: carol2)
 
+t5 = Transaction.create(value: 59, currency: "euro", paid_on: "20/02/2020",
+                        description: "jeans", category: clothing,
+                        user: carol2)
