@@ -1,11 +1,13 @@
 class Api::V1::TransactionsController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User, except: [ :index, :show ]
+  acts_as_token_authentication_handler_for User
   before_action :set_transaction, only: [ :show, :update, :destroy ]
   # before_action :authenticate_user!
 
   def index
     @transactions = policy_scope(Transaction)
 
+    #@transactions = @transactions.where(user: @user)
+    #@transactions = Transaction.where(user: @user)
   end
 
   def create
@@ -25,8 +27,11 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   end
 
   def update
+    @transaction = Transaction.find(params[:id])
+    authorize @transaction
+
     if @transaction.update(transaction_params)
-      render :show, status: :updated
+      render :show #, status: :updated
     else
       render_error
     end

@@ -1,13 +1,13 @@
 class TransactionPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      scope.where(user: user)
     end
   end
 
-  # def index?
-  #   false
-  # end
+  def index?
+    true
+  end
 
   def show?
     true
@@ -22,7 +22,7 @@ class TransactionPolicy < ApplicationPolicy
   # end
 
   def update?
-    record.user == user
+    record.user == @user
   end
 
   # def edit?
