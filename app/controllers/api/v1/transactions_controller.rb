@@ -4,10 +4,12 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   # before_action :authenticate_user!
 
   def index
-    @transactions = policy_scope(Transaction)
+    month = (params[:month]).to_i.between?(1,12) ? params[:month] : Time.current.month;
 
-    #@transactions = @transactions.where(user: @user)
-    #@transactions = Transaction.where(user: @user)
+    @transactions = policy_scope(Transaction).where("EXTRACT(MONTH FROM paid_on) = ?", month).order("paid_on DESC")
+
+    #.sort_by(&:paid_on).reverse
+    #Time.current.month)
   end
 
   def create
