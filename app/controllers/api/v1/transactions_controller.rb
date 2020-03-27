@@ -1,15 +1,14 @@
 class Api::V1::TransactionsController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User
   before_action :set_transaction, only: [ :show, :update, :destroy ]
   # before_action :authenticate_user!
 
   def index
-    month = (params[:month]).to_i.between?(1,12) ? params[:month].to_i : Time.current.month;
+    month = (params[:month]).to_i.between?(1,12) ? params[:month] : Time.current.month
 
-    @transactions = policy_scope(Transaction).where("EXTRACT(MONTH FROM paid_on) = ?", month).order("paid_on DESC")
+    @transactions = policy_scope(Transaction).by_month(month).order(paid_on: :desc)
 
-    #.sort_by(&:paid_on).reverse
-    #Time.current.month)
+    @transactions = @transactions.by_category(params[:category_id]) if params[:category_id].present?
+    @categories = Category.all
   end
 
   def create

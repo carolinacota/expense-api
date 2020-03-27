@@ -54,6 +54,14 @@ t5 = Transaction.create(price_cents: 4500, paid_on: "20/03/2020",
                         description: "jeans", category: clothing,
                         user: carol2)
 
-t6 = Transaction.create(price: Money.new(3440, 'BRL'), paid_on: "18/03/2020",
-                        description: "energy", category: home,
+t6 = Transaction.create(price_cents: 3460, paid_on: "18/03/2020",
+                        description: "mercadona", category: supermarket,
                         user: carol2)
+
+t7 = Transaction.create(price_cents: 2050, paid_on: "16/03/2020",
+                        description: "shirt", category: clothing,
+                        user: carol)
+
+# t6 = Transaction.create(price: Money.new(3440, 'BRL'), paid_on: "18/03/2020",
+#                         description: "energy", category: home,
+#                         user: carol2)
