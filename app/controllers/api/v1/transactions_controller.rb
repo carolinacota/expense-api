@@ -4,7 +4,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   # before_action :authenticate_user!
 
   def index
-    month = (params[:month]).to_i.between?(1,12) ? params[:month] : Time.current.month;
+    month = (params[:month]).to_i.between?(1,12) ? params[:month].to_i : Time.current.month;
 
     @transactions = policy_scope(Transaction).where("EXTRACT(MONTH FROM paid_on) = ?", month).order("paid_on DESC")
 
@@ -52,7 +52,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   end
 
   def transaction_params
-    params.require(:transaction).permit(:paid_on, :currency, :value, :description, :category_id)
+    params.require(:transaction).permit(:paid_on, :currency, :price_cents, :price, :description, :category_id)
   end
 
   def render_error

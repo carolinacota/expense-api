@@ -1,3 +1,5 @@
+require 'money'
+
 Category.destroy_all
 User.destroy_all
 Transaction.destroy_all
@@ -13,31 +15,45 @@ supermarket = Category.create(name: "supermarket", color: "green")
 transportation = Category.create(name: "transportation", color: "orange")
 
 puts "Creating Users"
-carol = User.create(email: "carolinareycota@gmail.com", password: "12345678")
-carol2 = User.create(email: "carolinarcota@gmail.com", password: "12345678")
+carol = User.create(email: "carolinarcota@gmail.com", password: "12345678")
+carol2 = User.create(email: "carolinareycota@gmail.com", password: "12345678")
 
 
 puts "Creating Transactions"
-t1 = Transaction.create(value: 33, currency: "euro", paid_on: "01/03/2020",
+t1 = Transaction.create(price_cents: 3333, paid_on: "01/03/2020",
                         description: "health insurance", category: health,
                         user: carol)
+# t1.save!
+# puts t1
+# puts t1.price
+# puts `T1:  #{t1.paid_on}`
+# m = Money.new(3440, 'BRL')
+# puts m
 
-t2 = Transaction.create(value: 59, currency: "euro", paid_on: "18/03/2020",
+t2 = Transaction.create(price_cents: 3440, paid_on: "18/03/2020",
                         description: "mercadona", category: supermarket,
                         user: carol2)
 
-t3 = Transaction.create(value: 1100, currency: "euro", paid_on: "16/03/2020",
+t3 = Transaction.create(price_cents: 80000, paid_on: "16/03/2020",
                         description: "rent + bills", category: home,
                         user: carol)
 
-t4 = Transaction.create(value: 80, currency: "euro", paid_on: "15/02/2020",
+t4 = Transaction.create(price_cents: 7000, paid_on: "15/02/2020",
                         description: "club", category: entertainment,
                         user: carol)
 
-t6 = Transaction.create(value: 25, currency: "euro", paid_on: "28/02/2020",
+t6 = Transaction.create(price_cents: 2500, paid_on: "28/02/2020",
                         description: "burger", category: foodAndDrink,
                         user: carol2)
 
-t5 = Transaction.create(value: 59, currency: "euro", paid_on: "20/02/2020",
+t6 = Transaction.create(price_cents: 2800, paid_on: "28/03/2020",
+                        description: "burger", category: foodAndDrink,
+                        user: carol2)
+
+t5 = Transaction.create(price_cents: 4500, paid_on: "20/03/2020",
                         description: "jeans", category: clothing,
+                        user: carol2)
+
+t6 = Transaction.create(price: Money.new(3440, 'BRL'), paid_on: "18/03/2020",
+                        description: "energy", category: home,
                         user: carol2)

@@ -1,7 +1,7 @@
-json.extract! @transaction, :id, :paid_on, :currency, :value, :description, :user_id
+json.extract! @transaction, :id, :paid_on, :price, :description, :user_id
 json.category do
   json.name @transaction.category.name
-  json.color @transaction.category.color
+  # json.color @transaction.category.color
 end
 
 

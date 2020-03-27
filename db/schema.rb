@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(version: 2020_03_19_141637) do
   end
 
   create_table "transactions", force: :cascade do |t|
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "EUR", null: false
     t.string "currency"
-    t.integer "value"
     t.date "paid_on"
     t.string "description"
     t.bigint "category_id"

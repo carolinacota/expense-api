@@ -1,8 +1,9 @@
 class CreateTransactions < ActiveRecord::Migration[5.2]
   def change
     create_table :transactions do |t|
+      t.integer :price_cents
+      t.monetize :price
       t.string :currency
-      t.integer :value
       t.date :paid_on
       t.string :description
       t.references :category, foreign_key: true
