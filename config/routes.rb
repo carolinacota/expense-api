@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       # resources :category, only: [:show, :index] do
       resources :transactions, only: [ :index, :show, :create, :update, :destroy ]
       resources :categories, only: :index
+      resources :summary, only: :index
       # end
     end
   end
