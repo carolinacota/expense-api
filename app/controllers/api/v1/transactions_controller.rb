@@ -1,14 +1,16 @@
 class Api::V1::TransactionsController < Api::V1::BaseController
   before_action :set_transaction, only: [ :show, :update, :destroy ]
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     month = (params[:month]).to_i.between?(1,12) ? params[:month] : Time.current.month
 
     @transactions = policy_scope(Transaction).by_month(month).order(paid_on: :desc)
+    # binding.pry
+    # .where("EXTRACT(MONTH FROM paid_on) = ?", month)
 
-    @transactions = @transactions.by_category(params[:category_id]) if params[:category_id].present?
-    @categories = Category.all
+    # @transactions = @transactions.by_category(params[:category_id]) if params[:category_id].present?
+    # @categories = Category.all
   end
 
   def create
@@ -55,7 +57,7 @@ class Api::V1::TransactionsController < Api::V1::BaseController
   end
 
   def render_error
-    render json: { errors: @transactions.errors.full_messages },
+    render json: { errors: @transaction.errors.full_messages },
       status: :unprocessable_entity #422
   end
 
