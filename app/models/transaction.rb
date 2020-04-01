@@ -12,7 +12,6 @@ class Transaction < ApplicationRecord
   # Transaction.by_category(id), @transactions.by_category
   scope :by_category, ->(category_id) { where(category_id: category_id) }
   scope :by_month, ->(month) { where("EXTRACT(MONTH FROM paid_on) = ?", month) }
-  # scope :by_year, ->(year) { where("EXTRACT(YEAR FROM paid_on) = ?", year)}
 
   def self.total_in_month(month)
     by_month(month).collect(&:price).sum

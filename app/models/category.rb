@@ -8,8 +8,8 @@ class Category < ApplicationRecord
     transactions.sum(:price_cents)
   end
 
-  def sum_of_transactions_in_month_cents(month)
-    transactions.where("EXTRACT(MONTH FROM paid_on) = ?", month)
+  def sum_of_transactions_in_month_cents(month, user)
+    transactions.where("EXTRACT(MONTH FROM paid_on) = ? AND user_id = ? ", month, user)
                 .sum(:price_cents)
   end
 end

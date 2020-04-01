@@ -18,7 +18,6 @@ puts "Creating Users"
 carol = User.create(email: "carolinarcota@gmail.com", password: "12345678")
 carol2 = User.create(email: "carolinareycota@gmail.com", password: "12345678")
 
-
 puts "Creating Transactions"
 t1 = Transaction.create(price_cents: 3333, paid_on: "01/03/2020",
                         description: "health insurance", category: health,
