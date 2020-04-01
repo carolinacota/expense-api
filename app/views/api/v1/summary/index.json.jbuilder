@@ -5,6 +5,6 @@
 
 json.summary do
   json.array! @arr do |summary|
-    json.extract! summary, :month, :year, :total
+    json.extract! summary, :month, :year, :total_cents
   end
 end
