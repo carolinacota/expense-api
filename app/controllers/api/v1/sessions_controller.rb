@@ -26,7 +26,9 @@ class Api::V1::SessionsController < Devise::SessionsController
   end
 
   def load_user
+    # print sign_in_params[:params]
     @user = User.find_for_database_authentication(email: sign_in_params[:email])
+    # print @user
     if @user
       return @user
     else
@@ -34,7 +36,7 @@ class Api::V1::SessionsController < Devise::SessionsController
         messages: "Cannot get User",
         is_success: false,
         data: {}
-      }, status: :failure
+      }, status: :unauthorized
     end
   end
 end
