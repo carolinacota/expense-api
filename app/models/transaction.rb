@@ -16,4 +16,8 @@ class Transaction < ApplicationRecord
   def self.total_in_month(month)
     by_month(month).collect(&:price).sum
   end
+
+  # def self.total_in_year(year)
+  #   by_year(year).collect(&:price).sum
+  # end
 end
