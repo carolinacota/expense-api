@@ -11,14 +11,14 @@ class Api::V1::BaseController < ActionController::API
 
   private
 
-  def allow_cors
-    headers["Access-Control-Allow-Origin"] = "http://localhost:3000/, http://127.0.0.1:3000/"
-    headers["Access-Control-Allow-Methods"] = %w{GET POST PUT DELETE}.join(",")
-    headers["Access-Control-Allow-Headers"] = %w{Origin Accept Content-Type X-Requested-With X-CSRF-Token}.join(",")
-    head(:ok) if request.request_method == "OPTIONS"
-    # or, render text: ''
-    # if that's more your style
-  end
+  # def allow_cors
+  #   headers["Access-Control-Allow-Origin"] = "*"
+  #   headers["Access-Control-Allow-Methods"] = %w{GET POST PUT DELETE}.join(",")
+  #   headers["Access-Control-Allow-Headers"] = %w{Origin Accept Content-Type X-Requested-With X-CSRF-Token}.join(",")
+  #   head(:ok) if request.request_method == "OPTIONS"
+  #   # or, render text: ''
+  #   # if that's more your style
+  # end
 
   def user_not_authorized(exception)
     render json: {

@@ -23,10 +23,23 @@ module ExpenseApi
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
-        resource '*', headers: :any, methods: [:get, :patch, :put, :delete, :post, :options]
+        origins 'http://localhost:3000'
+        resource '*', headers: :any, methods: [:get, :patch, :put, :delete, :post, :options], credentials: true
       end
+
+      allow do
+        origins 'http://127.0.0.1:3000'
+        resource '*', headers: :any, methods: [:get, :patch, :put, :delete, :post, :options], credentials: true
+      end
+
+      allow do
+        origins 'http://127.0.0.1'
+        resource '*', headers: :any, methods: [:get, :patch, :put, :delete, :post, :options], credentials: true
+      end
+
     end
+
+
 
   end
 end
