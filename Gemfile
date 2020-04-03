@@ -19,6 +19,7 @@ gem 'pundit'
 gem 'simple_token_authentication'
 gem 'money-rails'
 gem 'rack-cors'
+gem 'rails_same_site_cookie'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
