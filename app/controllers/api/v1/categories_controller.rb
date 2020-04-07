@@ -1,6 +1,6 @@
 class Api::V1::CategoriesController < Api::V1::BaseController
   before_action :authenticate_user!
-  skip_after_action :verify_authorized, only: :category_per_month
+  skip_after_action :verify_authorized, only: :index
 
   def index
     @categories = policy_scope(Category).all
@@ -12,5 +12,6 @@ class Api::V1::CategoriesController < Api::V1::BaseController
     @total = policy_scope(Transaction).total_in_month(@month)
     @categories = policy_scope(Category).includes(:transactions)
                                         .order(name: :asc)
+    authorize @categories
   end
 end
