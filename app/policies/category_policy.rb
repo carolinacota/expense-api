@@ -8,4 +8,8 @@ class CategoryPolicy < ApplicationPolicy
   def index?
     true
   end
+
+  def category_per_month?
+    true
+  end
 end

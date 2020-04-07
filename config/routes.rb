@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :transactions, only: [ :index, :show, :create, :update, :destroy ]
       resources :categories, only: :index
       resources :summary, only: :index
+      get "category_per_month", to: "categories#category_per_month"
       # end
     end
   end
